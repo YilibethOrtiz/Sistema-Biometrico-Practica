@@ -1,5 +1,6 @@
-### Sistema Biométrico en Practica
+### Sistema Biométrico de Control de Acceso
 
+## 📋 Descripción del Proyecto
 Proyecto de práctica enfocado en el desarrollo de un Sistema de Control de Acceso Biométrico. Esta aplicación está siendo diseñada para gestionar el registro y la asistencia de usuarios mediante Java y una arquitectura de base de datos relacional (MySQL).
 
 * **Características principales:**
@@ -11,6 +12,18 @@ Proyecto de práctica enfocado en el desarrollo de un Sistema de Control de Acce
 * **Arquitectura:** Enfoque en buenas prácticas de arquitectura de datos y programación orientada a objetos.
 
 * **Propósito:** Entorno de pruebas para fortalecer habilidades en backend y SQL antes de la implementación del proyecto universitario final.
+----
+Este sistema es una solución integral diseñada para el control de acceso en entornos universitarios. El proyecto se estructura bajo una arquitectura de tres capas, garantizando seguridad, escalabilidad y una separación clara de responsabilidades en el código.
+
+### 🛠️ Stack Tecnológico
+
+* **Lenguaje:** Java (Swing para interfaz gráfica).
+
+* **Base de Datos:** MySQL.
+
+* **Entorno de Desarrollo:** NetBeans IDE.
+
+* **Gestión de Datos:** Patrón DAO (Data Access Object).
 
 ----
 ### Estructura de la Base de Datos
@@ -38,3 +51,27 @@ CREATE TABLE usuarios (
 
 * **rol:** Define los privilegios del usuario (Administrativo o Portero).
 
+----
+### 🏗️ Estructura del Código (Lógica)
+
+El proyecto se organiza en clases especializadas para mantener un código limpio y profesional:
+
+* **1. Capa de Conexión** (Conexion.java)
+Gestiona el enlace directo con MySQL utilizando el driver JDBC.
+
+**Rol:** Abrir y cerrar la comunicación con el servidor.
+
+* **2. Capa de Acceso a Datos** (UsuarioDAO.java)
+Implementa la lógica de negocio para la autenticación.
+
+**Seguridad:** Utiliza PreparedStatement para ejecutar consultas parametrizadas, protegiendo el sistema contra ataques de SQL Injection.
+
+**Método principal:** validarUsuario(String usuario, String pass).
+
+* **3. Capa de Interfaz** (Login.java)
+Controla la experiencia de usuario (UX).
+
+**Función:** Captura las entradas, invoca la lógica de autenticación y gestiona el flujo de navegación según el rol (Administrativo o Portero).
+
+### 🔐 Seguridad
+La autenticación se basa en la validación directa contra el servidor, asegurando que solo usuarios registrados con roles específicos tengan acceso a las áreas restringidas del sistema.
