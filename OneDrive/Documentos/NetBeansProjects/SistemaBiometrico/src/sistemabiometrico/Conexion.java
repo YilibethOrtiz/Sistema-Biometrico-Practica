@@ -21,4 +21,8 @@ public static Connection getConnection() {
         }
         return link;
     }
+
+    public String validarUsuario(String user, String pass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
