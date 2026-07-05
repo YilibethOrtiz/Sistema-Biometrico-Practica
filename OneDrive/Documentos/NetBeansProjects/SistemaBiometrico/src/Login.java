@@ -71,29 +71,34 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        Conexion con= new Conexion();
-        String user= txtUsuario.getText();
+       UsuarioDAO dao= new UsuarioDAO();
+        
+        String user= txtUsuario.getText().trim();
         String pass = new String(txtContraseña.getPassword());
         
-        String rol= con.validarUsuario(user, pass);
+        String rol= dao.validarUsuario(user, pass);
         
         if(rol != null){
         if(rol.equals("Administrativo")){
             
             // Abrir ventana de administracion
-            
-        }else if( rol.equals("Portero")){
-            
+            MenuAdministrador admin= new MenuAdministrador();
+            admin.setVisible(true);
+        }else if( rol.equals("Portero")){            
             //abrir ventana de portero
-            
+            MenuPortero portero = new MenuPortero();
+            portero.setVisible(true);
+            this.dispose();
         }
     }else{
             JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorectos");
         }
     
 
-
-
+txtUsuario.setText("");
+txtContraseña.setText("");
+txtUsuario.requestFocus();
+this.dispose();
 
 
 
