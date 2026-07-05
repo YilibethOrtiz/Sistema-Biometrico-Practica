@@ -70,6 +70,19 @@ Implementa la lógica de negocio para la autenticación.
 
 * **3. Capa de Interfaz** (Login.java)
 Controla la experiencia de usuario (UX).
+---
+## Estado del Proyecto
+- **Login**: Funcional con validación de roles (Administrativo/Portero).
+- **Base de Datos**: Conexión establecida con MySQL.
+- **Tecnologías**: Java, MySQL, NetBeans.
+
+## Estructura de Roles
+- **Administrativo**: Acceso total al sistema.
+- **Portero**: Acceso restringido para control de ingresos.
+
+## Créditos
+Desarrollado por: Yilibeth
+
 
 **Función:** Captura las entradas, invoca la lógica de autenticación y gestiona el flujo de navegación según el rol (Administrativo o Portero).
 
