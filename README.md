@@ -80,6 +80,15 @@ Controla la experiencia de usuario (UX).
 - **Administrativo**: Acceso total al sistema.
 - **Portero**: Acceso restringido para control de ingresos.
 
+## Actualización (Sprint - Julio 2026)
+
+* **Normalización de Base de Datos:** Se establecieron relaciones(Foreign Keys)
+entre tabla usuarios y la nueva tabla registros para auditoria.
+
+* **Escalabilidad:** Se anidió la columna categoria en la tabla usuario para calificar tipo de personal (Estudiante, Docente, Visitante).
+
+* **Documentación:** Se integró el flujo de datos relacional al README.md para mejorar la trazabilidad sel sistema.
+
 ## Créditos
 Desarrollado por: Yilibeth
 
