@@ -1,3 +1,5 @@
+package sistemabiometrico;
+
 
 import javax.swing.JOptionPane;
 import sistemabiometrico.Conexion;
@@ -75,6 +77,14 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
+        // Esto es lo que debe estar dentro de tu botón de ingresar:
+MenuAdministrador ventanaAdmin = new MenuAdministrador();
+ventanaAdmin.setLocationRelativeTo(null); // Esto centra la ventana
+ventanaAdmin.setVisible(true); // Ahora usará el setVisible nativo de JFrame
+this.dispose(); // Esto cierra la ventana de Login al abrir el menú
+        
+        
+        
      UsuarioDAO dao= new UsuarioDAO();
      
         String usuario= txtUsuario.getText().trim();

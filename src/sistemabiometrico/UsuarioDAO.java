@@ -48,9 +48,9 @@ public class UsuarioDAO {
  * @param categoria La categoría seleccionada en el ComboBox.
  * @return true si el registro fue exitoso, false si ocurrió un error.
  */
-    public boolean registrarUsuario(String nombre, String id, String categoria) {
+    public boolean registrarPersona(String nombre, String id, String categoria) {
     // La consulta SQL con '?' son parámetros que evitarn inyección de datos inseguros
-    String sql = "INSERT INTO usuarios (id_usuario, nombre_usuario, categoria) VALUES (?, ?, ?)";
+    String sql = "INSERT INTO personas (nombre_apellido, identificacion, categoria) VALUES (?, ?, ?)";
     
     try (Connection con= new Conexion().getConnection();
     PreparedStatement ps= con.prepareStatement(sql)){
@@ -62,7 +62,7 @@ public class UsuarioDAO {
         
        int filasAfectadas= ps.executeUpdate();
        
-        
+
         // Si todo sale bien, devolvemos 'true'
         return filasAfectadas > 0; 
         
