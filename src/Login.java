@@ -47,7 +47,6 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        txtUsuario.setText("USUARIO");
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 200, 40));
 
         btnIngresar.setBackground(new java.awt.Color(51, 102, 255));

@@ -14,6 +14,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Adminitrativo");
         this.setLocationRelativeTo(this);
+        this.setResizable(false);
      
     // Maximizar la ventana automáticamente al iniciar
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
