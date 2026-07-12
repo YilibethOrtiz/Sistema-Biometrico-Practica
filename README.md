@@ -104,7 +104,8 @@ Controla la experiencia de usuario (UX).
 La autenticación se basa en la validación directa contra el servidor, asegurando que solo usuarios registrados con roles específicos tengan acceso a las áreas restringidas del sistema.
 
 ## Créditos
-Desarrollado por: Yilibeth Ortiz
+
+* **Desarrollado por:** Yilibeth Ortiz
 
 
 
