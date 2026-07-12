@@ -13,9 +13,11 @@ public class UsuarioDAO {
     //metodo que consulta si el usuario y contraseña son correctos 
     public String validarUsuario(String usuario, String pass){
         String rol= null;
-        System.out.println("Intentando loguar con: " +usuario + "y" + pass);
+        System.out.println("Intentando loguar con: " +usuario + " y " + pass);
         //SQL con signo ? para prevenir ataques de inyeccion SQL
         String sql= "SELECT rol FROM usuarios WHERE nombre_usuario = ? AND password = ?";
+        System.out.println("SQL: " + sql); // Imprime la consulta
+    System.out.println("Buscando: " + usuario + " con pass: " + pass);
         
         //try- with- resource para asegurar que la conexion se sierra solo a terminar 
         try(Connection con = new  Conexion().getConnection();
@@ -48,7 +50,7 @@ public class UsuarioDAO {
  */
     public boolean registrarUsuario(String nombre, String id, String categoria) {
     // La consulta SQL con '?' son parámetros que evitarn inyección de datos inseguros
-    String sql = "INSERT INTO usuarios (nombre_usuario, identificacion, categoria) VALUES (?, ?, ?)";
+    String sql = "INSERT INTO usuarios (id_usuario, nombre_usuario, categoria) VALUES (?, ?, ?)";
     
     try (Connection con= new Conexion().getConnection();
     PreparedStatement ps= con.prepareStatement(sql)){

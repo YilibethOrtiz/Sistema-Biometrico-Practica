@@ -78,9 +78,11 @@ public class Login extends javax.swing.JFrame {
      UsuarioDAO dao= new UsuarioDAO();
      
         String usuario= txtUsuario.getText().trim();
-        String aprobar= new String(txtContraseña.getPassword());
-        
-        String rol = dao.validarUsuario(usuario, aprobar);
+        //  Convertimos el arreglo de caracteres a un String
+       String pass= new String(txtContraseña.getPassword());
+       // Ahora sí, le quitamos los espacios
+        pass = pass.trim();
+        String rol = dao.validarUsuario(usuario, pass);
         
         if(rol!= null){
             if(rol.equals("Administrativo")){
