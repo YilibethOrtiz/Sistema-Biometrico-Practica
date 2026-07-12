@@ -44,26 +44,26 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 160, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 160, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel1.setText("Nombre Y Apellido");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, -1));
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel2.setText("Identificación (DNI-DI)");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 150, -1));
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cleccione el Campo", "Estudiante", "Docente", "Obrero", "Administrativo", "Visitantes" }));
-        jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 180, 30));
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         jButton2.setText("Limpiar Formulario");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jPanel3.add(jPanel1, java.awt.BorderLayout.CENTER);
 

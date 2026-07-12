@@ -40,6 +40,7 @@ CREATE TABLE usuarios (
     password VARCHAR(255) NOT NULL,
     rol ENUM('Administrativo', 'Portero') NOT NULL
 );
+
 ```
 ### Descripción de campos:
 
@@ -50,6 +51,15 @@ CREATE TABLE usuarios (
 * **password:** Contraseña de acceso (almacenada para validación).
 
 * **rol:** Define los privilegios del usuario (Administrativo o Portero).
+---
+
+### Todas las Tablas 
+
+El sistema utiliza una arquitectura relacional para separar las responsabilidades:
+
+* **Tabla usuarios:** Gestiona las credenciales de acceso (Admin y Portero).
+
+* **Tabla personas:** Registro de estudiantes, docentes, visitantes, administrativo y Obrero. No requiere contraseña, permitiendo un registro ágil y eficiente.
 
 ----
 ### 🏗️ Estructura del Código (Lógica)
@@ -82,18 +92,19 @@ Controla la experiencia de usuario (UX).
 
 ## Actualización (Sprint - Julio 2026)
 
-* **Normalización de Base de Datos:** Se establecieron relaciones(Foreign Keys)
-entre tabla usuarios y la nueva tabla registros para auditoria.
+* **Optimización de BD:** Se separaron las entidades de "Usuarios del sistema" y "Personas registradas" para mejorar la seguridad y escalabilidad.
 
-* **Escalabilidad:** Se anidió la columna categoria en la tabla usuario para calificar tipo de personal (Estudiante, Docente, Visitante).
+* **Nueva tabla personas:** Implementación de almacenamiento dedicado para estudiantes, docentes y otros, eliminando la redundancia y errores de validación.
 
-* **Documentación:** Se integró el flujo de datos relacional al README.md para mejorar la trazabilidad sel sistema.
-
-## Créditos
-Desarrollado por: Yilibeth
-
+* **Flujo de Registro:** Automatización del registro administrativo sin requerir credenciales innecesarias
 
 **Función:** Captura las entradas, invoca la lógica de autenticación y gestiona el flujo de navegación según el rol (Administrativo o Portero).
 
 ### 🔐 Seguridad
 La autenticación se basa en la validación directa contra el servidor, asegurando que solo usuarios registrados con roles específicos tengan acceso a las áreas restringidas del sistema.
+
+## Créditos
+Desarrollado por: Yilibeth Ortiz
+
+
+
