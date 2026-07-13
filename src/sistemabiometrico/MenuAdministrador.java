@@ -15,7 +15,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setResizable(false);
         
-        
+     cargarTabla();   
         
     }
 
@@ -82,7 +82,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Identificación", "Categoria"
+                "Nombre y Apellido", "Identificación", "Categoria"
             }
         ));
         jScrollPane2.setViewportView(tblaPersonas);
@@ -115,7 +115,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     if(dao.registrarPersona (txtNombre.getText(), txtID.getText(), cbCategoria.getSelectedItem().toString())) {
         // Confirmación visual para el administrador
         javax.swing.JOptionPane.showMessageDialog(this, "¡Usuario registrado con éxito!");
-        
+        cargarTabla();
         // Limpiamos los campos para dejar la pantalla lista para el siguiente registro
         limpiarCampos(); 
     } else {
@@ -144,7 +144,7 @@ private void limpiarCampos() {
         }
 public void cargarTabla() {
   modelo = (DefaultTableModel) tblaPersonas.getModel(); 
-    modelo.setRowCount(0); // Limpia la tabla
+    modelo.setRowCount(0); 
     
     UsuarioDAO dao = new UsuarioDAO();
     List<Personas> personas = dao.ListarPersona();
