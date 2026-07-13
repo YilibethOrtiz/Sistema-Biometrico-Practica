@@ -97,6 +97,33 @@ try (Connection con = new Conexion().getConnection();
     }
     return lista;
 }
+    public boolean eliminarPersona(String identificacion) {
+    String sql = "DELETE FROM personas WHERE identificacion = ?";
+    try (Connection con = new Conexion().getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, identificacion);
+        ps.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+public boolean actualizarPersona(String nombre, String identificacion, String categoria) {
+    String sql = "UPDATE personas SET nombre_apellido = ?, categoria = ? WHERE identificacion = ?";
+    try (Connection con = new Conexion().getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, nombre);
+        ps.setString(2, categoria);
+        ps.setString(3, identificacion);
+        ps.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }
 
   

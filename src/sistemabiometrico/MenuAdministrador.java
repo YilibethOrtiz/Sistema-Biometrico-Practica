@@ -15,7 +15,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setResizable(false);
         
-     cargarTabla();   
+     cargarTabla(); 
+     
+   
         
     }
 
@@ -42,6 +44,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblaPersonas = new javax.swing.JTable();
+        btnEliminarPerso = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -68,14 +72,15 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 100, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 100, -1));
 
         jButton2.setText("Limpiar Formulario");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, -1, -1));
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 150, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel3.setText("Penel- Administrativo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 240, -1));
+        jLabel3.setFont(new java.awt.Font("Bookman Old Style", 0, 36)); // NOI18N
+        jLabel3.setText("Panel- Administrativo");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 520, -1));
 
         tblaPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,11 +90,24 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 "Nombre y Apellido", "Identificación", "Categoria"
             }
         ));
+        tblaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblaPersonasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblaPersonas);
 
         jScrollPane1.setViewportView(jScrollPane2);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1020, 450));
+
+        btnEliminarPerso.setText("Eliminar");
+        btnEliminarPerso.addActionListener(this::btnEliminarPersoActionPerformed);
+        jPanel1.add(btnEliminarPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 90, -1, -1));
+
+        jButton3.setText("Actualizar");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 50, -1, -1));
 
         jPanel3.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -133,6 +151,54 @@ private void limpiarCampos() {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+limpiarCampos();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tblaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaPersonasMouseClicked
+
+int fila = tblaPersonas.getSelectedRow();
+    if (fila != -1) {
+        txtNombre.setText(tblaPersonas.getValueAt(fila, 0).toString());
+        txtID.setText(tblaPersonas.getValueAt(fila, 1).toString());
+        cbCategoria.setSelectedItem(tblaPersonas.getValueAt(fila, 2).toString());
+    }
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblaPersonasMouseClicked
+
+    private void btnEliminarPersoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPersoActionPerformed
+
+String id = txtID.getText(); // Usamos la identificación como clave
+    UsuarioDAO dao = new UsuarioDAO();
+    
+    // Necesitas agregar este método en tu UsuarioDAO (DELETE FROM personas WHERE identificacion = ?)
+    if(dao.eliminarPersona(id)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Registro eliminado");
+        cargarTabla();
+        limpiarCampos();
+    }
+
+    }//GEN-LAST:event_btnEliminarPersoActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+UsuarioDAO dao = new UsuarioDAO();
+if(dao.actualizarPersona(txtNombre.getText(), txtID.getText(), cbCategoria.getSelectedItem().toString())) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Registro actualizado con éxito");
+    cargarTabla();
+    limpiarCampos();
+} else {
+    javax.swing.JOptionPane.showMessageDialog(this, "Error al actualizar");
+}
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -155,9 +221,11 @@ public void cargarTabla() {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarPerso;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
