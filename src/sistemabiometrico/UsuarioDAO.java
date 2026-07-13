@@ -7,6 +7,9 @@ import javax.swing.*;
 import sistemabiometrico.Conexion;
 import java.sql.SQLException;
 import javax.swing.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 public class UsuarioDAO {
     
     
@@ -71,6 +74,28 @@ public class UsuarioDAO {
         JOptionPane.showMessageDialog(null,"Error al registrar usuario:" + e.getMessage());
         return false; // Devolvemos 'false' para avisar al usuario
     }
+     
+}
+    public List<Personas> ListarPersona() {
+        List<Personas> lista= new ArrayList<>();
+        String sql= "SELECT nombre_apellido, identificacion, categoria FROM personas";
+    
+try (Connection con = new Conexion().getConnection();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+        
+        while (rs.next()) {
+            Personas p = new Personas(
+                rs.getString("nombre_apellido"),
+                rs.getString("identificacion"),
+                rs.getString("categoria")
+            );
+            lista.add(p);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return lista;
 }
 }
 

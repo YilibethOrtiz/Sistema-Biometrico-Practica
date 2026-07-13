@@ -3,15 +3,19 @@ package sistemabiometrico;
 import sistemabiometrico.SistemaBiometrico;
 import javax.swing.JFrame;
 import sistemabiometrico.UsuarioDAO;
-
-
+import javax.swing.table.*;
+import java.util.ArrayList;
+import java.util.List;
 public class MenuAdministrador extends javax.swing.JFrame {
+    DefaultTableModel modelo;
  
     public MenuAdministrador() {
         initComponents();
         this.setTitle("Adminitrativo");
         this.setLocationRelativeTo(this);
         this.setResizable(false);
+        
+        
         
     }
 
@@ -34,6 +38,10 @@ public class MenuAdministrador extends javax.swing.JFrame {
         cbCategoria = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblaPersonas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -44,26 +52,44 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 160, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 190, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel1.setText("Nombre Y Apellido");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, -1));
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 140, -1));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 210, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel2.setText("Identificación (DNI-DI)");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 150, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 150, -1));
 
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cleccione el Campo", "Estudiante", "Docente", "Obrero", "Administrativo", "Visitantes" }));
-        jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 180, 30));
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celeccione la Categoria", "Estudiante", "Docente", "Obrero", "Administrativo", "Visitantes" }));
+        jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 180, 30));
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 100, -1));
 
         jButton2.setText("Limpiar Formulario");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 90, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel3.setText("Penel- Administrativo");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 240, -1));
+
+        tblaPersonas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Identificación", "Categoria"
+            }
+        ));
+        jScrollPane2.setViewportView(tblaPersonas);
+
+        jScrollPane1.setViewportView(jScrollPane2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1020, 450));
 
         jPanel3.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -116,7 +142,17 @@ private void limpiarCampos() {
             new MenuAdministrador().setVisible(true);
         });
         }
-
+public void cargarTabla() {
+  modelo = (DefaultTableModel) tblaPersonas.getModel(); 
+    modelo.setRowCount(0); // Limpia la tabla
+    
+    UsuarioDAO dao = new UsuarioDAO();
+    List<Personas> personas = dao.ListarPersona();
+    
+    for (Personas p : personas) {
+        modelo.addRow(new Object[]{p.getNombre(), p.getIdentificacion(), p.getCategoria()});
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCategoria;
@@ -124,11 +160,15 @@ private void limpiarCampos() {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblaPersonas;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
