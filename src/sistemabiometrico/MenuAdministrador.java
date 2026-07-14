@@ -15,11 +15,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setResizable(false);
         
-     cargarTabla(); 
-     
-   
-        
+     cargarTabla();     
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,12 +200,7 @@ if(dao.actualizarPersona(txtNombre.getText(), txtID.getText(), cbCategoria.getSe
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-       
-        java.awt.EventQueue.invokeLater(() -> {
-            new MenuAdministrador().setVisible(true);
-        });
-        }
+    
 public void cargarTabla() {
   modelo = (DefaultTableModel) tblaPersonas.getModel(); 
     modelo.setRowCount(0); 

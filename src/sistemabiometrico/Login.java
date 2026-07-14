@@ -96,9 +96,10 @@ this.dispose(); // Esto cierra la ventana de Login al abrir el menú
         
         if(rol!= null){
             if(rol.equals("Administrativo")){
-                MenuAdministrador administracion= new MenuAdministrador();
-                administracion.setVisible(true);
-                this.dispose();
+                MenuAdministrador administracion = new MenuAdministrador();
+        administracion.setVisible(true);
+        this.dispose();
+                 
             }else if(rol.equals("Portero")){
                 MenuPortero portero= new MenuPortero();
                 portero.setVisible(true);
